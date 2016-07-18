@@ -1,0 +1,41 @@
+<html>
+<head>
+  <title>Student List Demo</title>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.js">
+</script>
+</head>
+<body bgcolor='#00BFFF'>
+<h1 style="text-align:center;"><b>STUDENT LIST</b></h1>
+<div id="App">
+  EnterStudentName <br> <input name="EnterStudentName" v-model="newlist" v-on:keyup.enter="addStudent">
+  <ul>
+    <li v-for="student in studentList">
+      {{student.text}}
+      <button v-on:click="removeStudent($index)">X</button>
+    </li>
+  </ul>
+</div>
+<script>
+  new Vue({
+    el:'#App',
+    data:{
+      'studentList' :[],
+      'newlist':''
+  },
+    methods:{
+      addStudent:function() {
+        var text =this.newlist.trim()
+        if (text){
+          this.studentList.push({ text })
+          this.newlist=''
+                 }
+                        },
+      removeStudent:function(index){
+        this.studentList.splice(index,1)
+
+                                }
+            }
+  });
+</script>
+</body>
+</html>
